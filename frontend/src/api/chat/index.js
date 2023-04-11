@@ -7,7 +7,7 @@ const { X_API_KEY, BASE_URL } = env;
 
 export const getSessionId = async (token) => axios
   .get(
-    `${BASE_URL}chat/sessionId`,
+    `${BASE_URL}/chat/sessionId`,
     {
       withCredentials: true,
       headers: {

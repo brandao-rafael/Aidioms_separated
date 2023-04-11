@@ -4,7 +4,7 @@ import env from 'react-dotenv';
 const { BASE_URL } = env;
 
 export const downloadByUrl = async (url) => axios.post(
-  `${BASE_URL}playphrase/add`,
+  `${BASE_URL}/playphrase/add`,
   {
     url,
   },
@@ -17,7 +17,7 @@ export const downloadByUrl = async (url) => axios.post(
 ).then((data) => data).catch((error) => error);
 
 export const getVideo = async (query) => axios.get(
-  `${BASE_URL}playphrase/video?query=${query}`,
+  `${BASE_URL}/playphrase/video?query=${query}`,
   {
     withCredentials: true,
     headers: {

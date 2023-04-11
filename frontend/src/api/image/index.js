@@ -6,7 +6,7 @@ const { X_API_KEY, BASE_URL } = env;
 // eslint-disable-next-line import/prefer-default-export
 export const generateImage = async (token, prompt, quantity) => axios
   .post(
-    `${BASE_URL}image/generator`,
+    `${BASE_URL}/image/generator`,
     {
       prompt,
       quantity,
