@@ -5,7 +5,7 @@ const { X_API_KEY, BASE_URL } = env;
 
 export const registerUser = async (user) => axios
   .post(
-    `${BASE_URL}/user/register`,
+    'https://aidiomsv10-backend-production.up.railway.app/user/register',
     {
       ...user,
     },
