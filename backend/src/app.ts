@@ -14,30 +14,30 @@ const chatRouter = new Chat();
 const imageRouter = new Image();
 const playPhrase = new PlayPhrase();
 
-function allowCors(_req: Request, res: Response, next: NextFunction) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, x_api_key');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  next();
-}
 
 class App {
   public app: Application;
-
+  
   constructor() {
     this.app = express();
     this.config();
     this.routes();
   }
   
+  private allowCors(_req: Request, res: Response, next: NextFunction) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, x_api_key');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    next();
+  }
   private config(): void {
     this.app.use(express.json());
   }
 
   private routes(): void {
     this.app.get('/', (_req, res) => res.json({ ok: true }));
-    this.app.use(allowCors);
+    this.app.use(this.allowCors);
     this.app.use('/user', userRouter.router);
     this.app.use('/class', classRouter.router);
     this.app.use('/student', studentRouter.router);
