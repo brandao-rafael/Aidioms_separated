@@ -5,7 +5,7 @@ import Student from './database/routes/Student.routes';
 import Chat from './database/routes/Chat.routes';
 import Image from './database/routes/Image.routes';
 import PlayPhrase from './database/routes/Playphrase.routes';
-const cors = require('cors');
+import cors from 'cors';
 const userRouter = new User();
 const classRouter = new Class();
 const studentRouter = new Student();
@@ -32,7 +32,10 @@ class App {
   }
   private config(): void {
     this.app.use(express.json());
-    this.app.use(cors());
+    this.app.use((req: Request, res: Response, next: NextFunction) => {
+      next();
+    }, cors({ maxAge: 84600 }));
+    
   }
 
   private routes(): void {
