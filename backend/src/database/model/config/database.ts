@@ -14,7 +14,6 @@ const config: Options = {
   },
   logging: false,
 };
-console.log(process.env.MYSQLDATABASE);
 
 
 module.exports = config;

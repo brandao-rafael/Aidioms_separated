@@ -32,9 +32,9 @@ class App {
   }
   private config(): void {
     this.app.use(express.json());
-    this.app.use((req: Request, res: Response, next: NextFunction) => {
+    this.app.use((_req: Request, _res: Response, next: NextFunction) => {
       next();
-    }, cors({ maxAge: 84600 }));
+    }, cors({ maxAge: 84600, origin: '*', credentials: true }));
     
   }
 
