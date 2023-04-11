@@ -5,7 +5,7 @@ const { X_API_KEY, BASE_URL } = env;
 
 export const registerUser = async (user) => axios
   .post(
-    `${BASE_URL}user/register`,
+    `${BASE_URL}/user/register`,
     {
       ...user,
     },
@@ -33,7 +33,7 @@ export const registerUser = async (user) => axios
 
 export const login = async (user) => axios
   .post(
-    `${BASE_URL}user/login`,
+    `${BASE_URL}/user/login`,
     {
       ...user,
     },
@@ -59,7 +59,7 @@ export const login = async (user) => axios
 
 export const validateEmailUser = async (email, code) => axios
   .put(
-    `${BASE_URL}user/validate`,
+    `${BASE_URL}/user/validate`,
     {
       email,
       validationCode: code,
