@@ -15,7 +15,7 @@ const imageRouter = new Image();
 const playPhrase = new PlayPhrase();
 
 function allowCors(_req: Request, res: Response, next: NextFunction) {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, x_api_key');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
