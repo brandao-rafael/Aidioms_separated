@@ -1,12 +1,11 @@
 import express, { Application, NextFunction, Request, Response } from 'express';
-import cors from 'cors';
 import User from './database/routes/User.routes';
 import Class from './database/routes/Class.routes';
 import Student from './database/routes/Student.routes';
 import Chat from './database/routes/Chat.routes';
 import Image from './database/routes/Image.routes';
 import PlayPhrase from './database/routes/Playphrase.routes';
-
+const cors = require('cors');
 const userRouter = new User();
 const classRouter = new Class();
 const studentRouter = new Student();
@@ -33,6 +32,7 @@ class App {
   }
   private config(): void {
     this.app.use(express.json());
+    this.app.use(cors());
   }
 
   private routes(): void {
