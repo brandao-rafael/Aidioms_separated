@@ -1,4 +1,5 @@
 import express, { Application, NextFunction, Request, Response } from 'express';
+import cors from 'cors';
 import User from './database/routes/User.routes';
 import Class from './database/routes/Class.routes';
 import Student from './database/routes/Student.routes';
@@ -13,23 +14,15 @@ const chatRouter = new Chat();
 const imageRouter = new Image();
 const playPhrase = new PlayPhrase();
 
-function checkAllowedOrigin(req: Request, res: Response, next: NextFunction) {
-  const allowedOrigins = ['https://aidioms-production.up.railway.app'];
-  const origin = req.headers.origin as string;
 
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, x-api-key');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-  }
-
-  if (req.method === 'OPTIONS') {
-    res.sendStatus(200);
-  } else {
-    next();
-  }
-}
+const corsOptions = {
+  origin: 'https://aidioms-production.up.railway.app',
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'x-api-key'],
+  credentials: true,
+  preflightContinue: false,
+  optionsSuccessStatus: 204
+};
 
 class App {
   public app: Application;
@@ -42,11 +35,11 @@ class App {
 
   private config(): void {
     this.app.use(express.json());
+    this.app.use(cors(corsOptions));
   }
 
   private routes(): void {
     this.app.get('/', (_req, res) => res.json({ ok: true }));
-    this.app.use(checkAllowedOrigin);
     this.app.use('/user', userRouter.router);
     this.app.use('/class', classRouter.router);
     this.app.use('/student', studentRouter.router);
