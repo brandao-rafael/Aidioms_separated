@@ -14,6 +14,13 @@ const chatRouter = new Chat();
 const imageRouter = new Image();
 const playPhrase = new PlayPhrase();
 
+const corsOptions = {
+  origin: 'https://aidioms-production.up.railway.app',
+  methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'x-api-key'],
+  credentials: true
+};
+
 class App {
   public app: Application;
 
@@ -28,19 +35,13 @@ class App {
   }
 
   private routes(): void {
-    this.app.get('/', (_req, res) => res.json({ ok: true }));
-    this.app.use(cors({
-      origin: 'https://aidioms-production.up.railway.app',
-      methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'],
-      allowedHeaders: ['Content-Type', 'Authorization', 'x-api-key'],
-      credentials: true
-    }));    
-    this.app.use('/user', userRouter.router);
-    this.app.use('/class', classRouter.router);
-    this.app.use('/student', studentRouter.router);
-    this.app.use('/chat', chatRouter.router);
-    this.app.use('/image', imageRouter.router);
-    this.app.use('/playphrase', playPhrase.router);
+    this.app.get('/', (_req, res) => res.json({ ok: true })); 
+    this.app.use('/user', cors(corsOptions), userRouter.router);
+    this.app.use('/class', cors(corsOptions), classRouter.router);
+    this.app.use('/student', cors(corsOptions), studentRouter.router);
+    this.app.use('/chat', cors(corsOptions), chatRouter.router);
+    this.app.use('/image', cors(corsOptions), imageRouter.router);
+    this.app.use('/playphrase', cors(corsOptions), playPhrase.router);
   }
 
   public start(PORT: string | number): void {
