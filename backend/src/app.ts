@@ -1,5 +1,4 @@
 import express, { Application, NextFunction, Request, Response } from 'express';
-import cors from 'cors';
 import User from './database/routes/User.routes';
 import Class from './database/routes/Class.routes';
 import Student from './database/routes/Student.routes';
@@ -47,7 +46,6 @@ class App {
 
   private routes(): void {
     this.app.get('/', (_req, res) => res.json({ ok: true }));
-    this.app.use(cors({ origin: '*', credentials: true }));
     this.app.use(checkAllowedOrigin);
     this.app.use('/user', userRouter.router);
     this.app.use('/class', classRouter.router);
