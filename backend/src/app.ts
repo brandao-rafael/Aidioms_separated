@@ -14,14 +14,6 @@ const chatRouter = new Chat();
 const imageRouter = new Image();
 const playPhrase = new PlayPhrase();
 
-function allowCors(_req: Request, res: Response, next: NextFunction) {
-  res.setHeader('Access-Control-Allow-Origin', 'https://aidioms-production.up.railway.app/');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, x-api-key');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  next();
-}
-
 class App {
   public app: Application;
 
@@ -37,7 +29,12 @@ class App {
 
   private routes(): void {
     this.app.get('/', (_req, res) => res.json({ ok: true }));
-    this.app.use(allowCors);
+    this.app.use(cors({
+      origin: 'https://aidioms-production.up.railway.app',
+      methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'],
+      allowedHeaders: ['Content-Type', 'Authorization', 'x-api-key'],
+      credentials: true
+    }));    
     this.app.use('/user', userRouter.router);
     this.app.use('/class', classRouter.router);
     this.app.use('/student', studentRouter.router);
