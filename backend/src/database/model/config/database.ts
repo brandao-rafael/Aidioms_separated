@@ -15,6 +15,4 @@ const config: Options = {
   logging: false,
 };
 
-console.log("Database configuration:", config);
-
 module.exports = config;
