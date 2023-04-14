@@ -26,17 +26,21 @@ class App {
 
   private config(): void {
     const corsOptions = {
-      origin: "*",
+      origin: "https://aidioms-production.up.railway.app",
       methods: 'GET,POST,DELETE,OPTIONS,PUT,PATCH',
       allowedHeaders: '*',
+      credentials: true,
     };
   
     this.app.options('*', cors(corsOptions)); // Handle preflight requests
     this.app.use(cors(corsOptions));
+  
     this.app.use((_req: Request, res: Response, next: NextFunction) => {
-      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Allow-Origin', "https://aidioms-production.up.railway.app");
+      res.setHeader('Access-Control-Allow-Credentials', 'true');
       next();
     });
+  
     this.app.use(express.json());
   }
 
