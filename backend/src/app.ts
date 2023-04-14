@@ -26,7 +26,7 @@ class App {
 
   private config(): void {
     const corsOptions = {
-      origin: ['https://aidioms-production.up.railway.app', 'https://aidiomsbackend-production.up.railway.app'],
+      origin: "*",
       methods: 'GET,POST,DELETE,OPTIONS,PUT,PATCH',
       allowedHeaders: '*',
     };
