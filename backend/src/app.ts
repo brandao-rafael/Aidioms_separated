@@ -50,8 +50,8 @@ class App {
     this.app.use('/playphrase', playPhrase.router);
   }
 
-  public start(PORT: string | number): void {
-    this.app.listen(PORT, () => console.log(`Running on port ${PORT}`));
+  public start(PORT: number, HOST: string): void {
+    this.app.listen(PORT, HOST, () => console.log(`Running on port ${PORT}`));
   }
 }
 
