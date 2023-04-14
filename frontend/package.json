@@ -90,6 +90,7 @@
     "cy:open": "cypress open --e2e --browser chrome",
     "start": "react-dotenv && node scripts/start.js",
     "build": "react-dotenv && node scripts/build.js",
+    "migrate": "node ./sequelize-cli.js db:migrate",
     "serve": "react-dotenv && serve build",
     "test": "node scripts/test.js",
     "test-coverage": "node scripts/test.js --coverage --watchAll=false",
