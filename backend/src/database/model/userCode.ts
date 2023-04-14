@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import { Model, INTEGER, BOOLEAN, DATE } from 'sequelize';
+import { Model, INTEGER, BOOLEAN, DATE, STRING } from 'sequelize';
 import User from './users.model';
 import db from '.';
 
@@ -8,6 +8,8 @@ export default class UserCode extends Model {
   public code!: string;
   public isVerified!: boolean;
   public userId!: number;
+  public token!: string | null;
+  public expires!: Date | null;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -29,8 +31,16 @@ UserCode.init({
     },
   },
   code: {
-    type: INTEGER,
+    type: STRING(512),
     allowNull: false,
+  },
+  token: {
+    type: STRING,
+    allowNull: true,
+  },
+  expires: {
+    type: DATE,
+    allowNull: true,
   },
   deleted: {
     type: BOOLEAN,

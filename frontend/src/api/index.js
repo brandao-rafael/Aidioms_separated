@@ -1,4 +1,6 @@
-export { registerUser, login } from './user';
+export {
+  registerUser, login, resetPassword, sendEmailResetPassword,
+} from './user';
 export {
   getSessionId, transcript, chatRespond,
 } from './chat';

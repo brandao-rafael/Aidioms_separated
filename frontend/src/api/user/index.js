@@ -74,3 +74,34 @@ export const validateEmailUser = async (email, code) => axios
     },
   ).then((response) => ({ status: response.status }))
   .catch((error) => ({ status: error.response.status, message: error.response.data.message }));
+
+export const sendEmailResetPassword = async (email) => axios
+  .post(
+    `${BASE_URL}/user/email-password-reset`,
+    { email },
+    {
+      withCredentials: true,
+      headers: {
+        'content-type': 'application/json',
+        x_api_key: X_API_KEY || 'banana',
+      },
+    },
+  ).then((response) => response.data)
+  .catch((error) => error);
+
+export const resetPassword = async (code, password) => axios
+  .put(
+    `${BASE_URL}/user/password-reset`,
+    {
+      token: code,
+      password,
+    },
+    {
+      withCredentials: true,
+      headers: {
+        'content-type': 'application/json',
+        x_api_key: X_API_KEY || 'banana',
+      },
+    },
+  ).then((response) => response)
+  .catch((error) => error);

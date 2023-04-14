@@ -15,7 +15,6 @@ export default class UserController {
           return res.status(201).end();
       }
     } catch (error) {
-      console.log(error);
       return res.status(500).json(error);
     }
   };
@@ -68,6 +67,43 @@ export default class UserController {
       return res.status(204).end();
     } catch (error) {
       return res.status(500).end();
+    }
+  };
+
+  public sendPasswordResetEmail = async (req: Request, res: Response): Promise<void | Response> => {
+    try {
+      const { email } = req.body;
+      const result = await UserService.sendPasswordResetEmail(email);
+
+      if (result === 'User not found') {
+        return res.status(404).json({ message: result });
+      } else {
+        return res.status(200).json({ message: result });
+      }
+    } catch (error) {
+      return res.status(500).json(error);
+    }
+  };
+
+  public resetPassword = async (req: Request, res: Response): Promise<void | Response> => {
+    try {
+      const { token, password } = req.body;
+      
+      const user = await UserService.verifyResetToken(token);
+
+      if (!user) {
+        return res.status(400).json({ message: 'Invalid or expired token' });
+      }
+
+      const success = await UserService.resetPassword(user.id.toString(), password);
+
+      if (success) {
+        return res.status(200).json({ message: 'Password updated successfully' });
+      } else {
+        return res.status(500).json({ message: 'Failed to update password' });
+      }
+    } catch (error) {
+      return res.status(500).json(error);
     }
   };
 

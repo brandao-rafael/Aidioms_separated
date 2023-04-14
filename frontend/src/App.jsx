@@ -11,6 +11,8 @@ import Chat from './pages/content/Chat';
 import Validation from './pages/user/Validation';
 import Playphrase from './pages/content/Playphrase';
 import PostVideo from './pages/content/PostVideo';
+import ResetPassword from './pages/user/ResetPassword';
+import VerifyToken from './pages/user/VerifyToken';
 
 export default function App() {
   return (
@@ -23,6 +25,8 @@ export default function App() {
         <Route exact path="/chat" component={Chat} />
         <Route exact path="/validate" component={Validation} />
         <Route exact path="/postvideo" component={PostVideo} />
+        <Route exact path="/reset-password" component={ResetPassword} />
+        <Route path="/verify-token/:token?" component={VerifyToken} />
         <Route path="" component={PageNotFound} />
       </Switch>
     </AiProvider>

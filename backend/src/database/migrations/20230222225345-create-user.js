@@ -2,47 +2,45 @@
 /* eslint-disable max-lines-per-function */
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('user', {
+    await queryInterface.createTable('user_code', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      name: {
+      userId: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'user',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
-      email: {
+      code: {
         allowNull: false,
-        type: Sequelize.STRING,
-        unique: true,
-      },
-      password: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
-      phone: {
-        allowNull: false,
-        type: Sequelize.STRING(45),
-      },
-      birth: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
-      email_verified: {
-        allowNull: false,
-        type: Sequelize.BOOLEAN,
+        type: Sequelize.INTEGER,
       },
       deleted: {
         allowNull: false,
+        defaultValue: false,
         type: Sequelize.BOOLEAN,
       },
-      created_at: {
+      token: {
+        allowNull: true,
+        type: Sequelize.STRING,
+      },
+      expires: {
+        allowNull: true,
+        type: Sequelize.DATE,
+      },
+      createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
       },
-      updated_at: {
+      updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
       },
@@ -50,6 +48,6 @@ module.exports = {
   },
 
   down: async (queryInterface, _Sequelize) => {
-    await queryInterface.dropTable('user');
+    await queryInterface.dropTable('user_code');
   },
 };
