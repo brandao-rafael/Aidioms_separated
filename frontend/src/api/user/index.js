@@ -31,34 +31,31 @@ export const registerUser = async (user) => axios
     }
   });
 
-export const login = async (user) => {
-  console.log(`${BASE_URL}/user/login`);
-  return axios
-    .post(
-      `${BASE_URL}/user/login`,
-      {
-        ...user,
+export const login = async (user) => axios
+  .post(
+    `${BASE_URL}/user/login`,
+    {
+      ...user,
+    },
+    {
+      withCredentials: true,
+      headers: {
+        'content-type': 'application/json',
+        x_api_key: X_API_KEY,
       },
-      {
-        withCredentials: true,
-        headers: {
-          'content-type': 'application/json',
-          x_api_key: X_API_KEY,
-        },
-      },
-    )
-    .then((response) => ({
-      status: response.status, token: response.data.token, userName: response.data.userName,
-    }))
-    .catch((error) => {
-      switch (error.response.status) {
-        case 401:
-          return 'unauthorized';
-        default:
-          return 'internal server error';
-      }
-    });
-};
+    },
+  )
+  .then((response) => ({
+    status: response.status, token: response.data.token, userName: response.data.userName,
+  }))
+  .catch((error) => {
+    switch (error.response.status) {
+      case 401:
+        return 'unauthorized';
+      default:
+        return 'internal server error';
+    }
+  });
 
 export const validateEmailUser = async (email, code) => axios
   .put(
