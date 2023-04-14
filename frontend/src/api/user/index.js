@@ -2,6 +2,7 @@ import axios from 'axios';
 import env from 'react-dotenv';
 
 const { X_API_KEY, BASE_URL } = env;
+// route
 
 export const registerUser = async (user) => axios
   .post(
