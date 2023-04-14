@@ -10,6 +10,7 @@ import { chatRespond, getSessionId, transcript } from '../../api/chat';
 import AiContext from '../../hooks/AiContext';
 import Header from '../../components/Header';
 import AudioRecorder from '../../components/AudioRecorder';
+import aidioms from '../../assets/images/aidioms_logo_small.png';
 // import UserInput from '../../components/UserInput';
 
 function Chat() {
@@ -161,7 +162,7 @@ function Chat() {
     <div className="chat-container">
       <Header />
       <div className="chat-header" style={{ color: style.color }}>
-        <img className="chat-ia-picture" src="https://creajr.crea-pr.org.br/u/posts/15/inteligencia-artificial-ia-quais-as-suas-aplicacoes-na-engenharia-imagem-large.png" alt="Ia" />
+        <img className="chat-ia-picture" src={aidioms} alt="logo" style={{ width: '5%' }} />
         <h3 className="chat-ia-name" style={{ color: style.color }}>Ai.dioms</h3>
       </div>
       <div className="chat-conversation" style={{ backgroundColor: style.backgroundColor }} ref={messageEl}>
