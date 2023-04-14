@@ -6,6 +6,7 @@ import Student from './database/routes/Student.routes';
 import Chat from './database/routes/Chat.routes';
 import Image from './database/routes/Image.routes';
 import PlayPhrase from './database/routes/Playphrase.routes';
+const cors = require('cors');
 
 const userRouter = new User();
 const classRouter = new Class();
@@ -40,14 +41,16 @@ class App {
 
   private config():void {
     const accessControl: express.RequestHandler = (_req, res, next) => {
-      res.header('Access-Control-Allow-Origin', '*');
+      console.log('accessControl');
+      res.header('Access-Control-Allow-Origin', 'https://aidioms-production.up.railway.app/');
       res.header('Access-Control-Allow-Methods', 'GET,POST,DELETE,OPTIONS,PUT,PATCH');
       res.header('Access-Control-Allow-Headers', '*');
+      app.use(cors());
       next();
     };
 
-    this.app.use(express.json());
     this.app.use(accessControl);
+    this.app.use(express.json());
   }
 
   private routes(): void {
