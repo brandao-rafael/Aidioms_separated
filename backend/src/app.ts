@@ -1,5 +1,5 @@
 import express, { Application, NextFunction, Request, Response } from 'express';
-import cors from 'cors';
+// import cors from 'cors';
 import User from './database/routes/User.routes';
 import Class from './database/routes/Class.routes';
 import Student from './database/routes/Student.routes';
@@ -15,14 +15,14 @@ const imageRouter = new Image();
 const playPhrase = new PlayPhrase();
 
 
-const corsOptions = {
-  origin: 'https://aidioms-production.up.railway.app',
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'x-api-key'],
-  credentials: true,
-  preflightContinue: false,
-  optionsSuccessStatus: 204
-};
+// const corsOptions = {
+//   origin: 'https://aidioms-production.up.railway.app',
+//   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+//   allowedHeaders: ['Content-Type', 'Authorization', 'x-api-key'],
+//   credentials: true,
+//   preflightContinue: false,
+//   optionsSuccessStatus: 204
+// };
 
 class App {
   public app: Application;
@@ -33,9 +33,21 @@ class App {
     this.routes();
   }
 
-  private config(): void {
+  // private config(): void {
+  //   this.app.use(express.json());
+  //   this.app.use(cors(corsOptions));
+  // }
+
+  private config():void {
+    const accessControl: express.RequestHandler = (_req, res, next) => {
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Methods', 'GET,POST,DELETE,OPTIONS,PUT,PATCH');
+      res.header('Access-Control-Allow-Headers', '*');
+      next();
+    };
+
     this.app.use(express.json());
-    this.app.use(cors(corsOptions));
+    this.app.use(accessControl);
   }
 
   private routes(): void {
