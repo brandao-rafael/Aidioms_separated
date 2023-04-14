@@ -25,16 +25,13 @@ class App {
   }
 
   private config(): void {
-    const accessControl: express.RequestHandler = (_req, res, next) => {
-      console.log('accessControl');
-      res.header('Access-Control-Allow-Origin', ['https://aidioms-production.up.railway.app', 'https://aidiomsbackend-production.up.railway.app']);
-      res.header('Access-Control-Allow-Methods', 'GET,POST,DELETE,OPTIONS,PUT,PATCH');
-      res.header('Access-Control-Allow-Headers', '*');
-      next();
+    const corsOptions = {
+      origin: ['https://aidioms-production.up.railway.app', 'https://aidiomsbackend-production.up.railway.app'],
+      methods: 'GET,POST,DELETE,OPTIONS,PUT,PATCH',
+      allowedHeaders: '*',
     };
   
-    this.app.use(cors());
-    this.app.use(accessControl);
+    this.app.use(cors(corsOptions));
     this.app.use(express.json());
   }  
 
