@@ -3,7 +3,6 @@ import axios from 'axios';
 import env from 'react-dotenv';
 
 const { X_API_KEY, BASE_URL } = env;
-// const X_API_KEY = env.X_API_KEY;
 
 export const getSessionId = async (token) => axios
   .get(
@@ -12,7 +11,7 @@ export const getSessionId = async (token) => axios
       withCredentials: true,
       headers: {
         'content-type': 'application/json',
-        'x-api-key': X_API_KEY,
+        x_api_key: X_API_KEY,
         authorization: token,
       },
     },
@@ -39,7 +38,7 @@ export const chatRespond = async (token, user_session_id, historic, prompt) => a
       withCredentials: true,
       headers: {
         'content-type': 'application/json',
-        'x-api-key': X_API_KEY,
+        x_api_key: X_API_KEY,
         authorization: token,
       },
     },
@@ -63,6 +62,7 @@ export const transcript = async (token, blob) => {
       withCredentials: true,
       headers: {
         'content-type': 'multipart/form-data',
+        x_api_key: X_API_KEY,
         authorization: token,
       },
     },
