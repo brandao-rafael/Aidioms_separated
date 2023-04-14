@@ -1,4 +1,5 @@
 /* eslint-disable max-lines-per-function */
+import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import IUserRegister from '../interfaces/IUserRegister';
@@ -18,6 +19,7 @@ type TokenName = {
 }
 
 const saltRounds = 10;
+const tokenExpirationTime = 30 * 60 * 1000;
 
 export default class UserService {
   private static async hashPassword(password: string): Promise<string> {
@@ -45,7 +47,7 @@ export default class UserService {
 
     await UserCode.create({
       userId: created.id,
-      code,
+      code: code.toString(),
     });
 
     const mailOptions = {
@@ -111,5 +113,59 @@ export default class UserService {
       return null;
     }
     return User.update({ ...payload }, { where: { id } });
+  }
+
+  public static async sendPasswordResetEmail(email: string): Promise<string | undefined> {
+    try {
+      const user = await User.findOne({ where: { email } });
+    
+      if (!user) {
+        return 'User not found';
+      }
+    
+      const token = crypto.randomBytes(32).toString('hex');
+      const expires = new Date(Date.now() + tokenExpirationTime);
+    
+      await UserCode.create({ userId: user.id, code: token, expires });
+    
+      const mailOptions = {
+        from: process.env.EMAIL_ADDRESS,
+        to: email,
+        subject: 'Password Reset',
+        html: `Click the link to reset your password: <a href="http://localhost:3000/verify-token?token=${token}">Reset Password</a>`,
+      };
+    
+      await transporter.sendMail(mailOptions);
+      return 'Password reset email sent';
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  
+  public static async verifyResetToken(token: string): Promise<User | null> {
+    const passwordResetToken = await UserCode.findOne({ where: { code: token } });
+
+    if (passwordResetToken?.expires === null) {
+      return null;
+    }
+  
+    if (!passwordResetToken || Number(passwordResetToken.expires) < Date.now()) {
+      return null;
+    }
+  
+    const user = await User.findByPk(passwordResetToken.userId);
+    return user;
+  }
+  
+  public static async resetPassword(userId: string, newPassword: string): Promise<boolean> {
+    const hashedPassword = await this.hashPassword(newPassword);
+    const result = await User.update({ password: hashedPassword }, { where: { id: userId } });
+  
+    if (result) {
+      await UserCode.destroy({ where: { userId } });
+      return true;
+    } else {
+      return false;
+    }
   }
 }

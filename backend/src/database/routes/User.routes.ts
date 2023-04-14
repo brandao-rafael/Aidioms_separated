@@ -15,6 +15,8 @@ export default class User {
     this.router.get('/user', validateJwt, userController.getById);
     this.router.post('/register', apiKeyMiddleware, validateRegister, userController.create);
     this.router.post('/login', apiKeyMiddleware, validateLogin, userController.login);
+    this.router.post('/email-password-reset', apiKeyMiddleware, userController.sendPasswordResetEmail);
+    this.router.put('/password-reset', apiKeyMiddleware, userController.resetPassword);
     this.router.put('/validate', apiKeyMiddleware, userController.validate);
     this.router.put('/:id/update', apiKeyMiddleware, userController.update);
     this.router.patch('/:id/delete', apiKeyMiddleware, userController.delete);

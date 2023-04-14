@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { login } from '../../api';
 import AiContext from '../../hooks/AiContext';
@@ -161,7 +161,7 @@ function LoginForm() {
           Submit
           <i className="fa fa-arrow-right" aria-hidden="true" />
         </button>
-        <a href="/signup" className="reset-password">Forgot password?</a>
+        <Link to="/reset-password" className="reset-password">Forgot password?</Link>
         <button type="button" className="signup-login" onClick={() => history.push('/signup')}>
           Sign Up
         </button>
