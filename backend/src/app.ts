@@ -28,7 +28,7 @@ class App {
     const corsOptions = {
       origin: "https://aidioms-production.up.railway.app",
       methods: 'GET,POST,DELETE,OPTIONS,PUT,PATCH',
-      allowedHeaders: '*',
+      allowedHeaders: 'Content-Type,Authorization,X-Requested-With,x_api_key',
       credentials: true,
     };
   
