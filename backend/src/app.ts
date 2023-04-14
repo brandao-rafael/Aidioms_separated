@@ -31,9 +31,10 @@ class App {
       allowedHeaders: '*',
     };
   
+    this.app.options('*', cors(corsOptions)); // Handle preflight requests
     this.app.use(cors(corsOptions));
     this.app.use(express.json());
-  }  
+  }
 
   private routes(): void {
     this.app.get('/', (_req, res) => res.json({ ok: true }));
