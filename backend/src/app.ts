@@ -15,16 +15,6 @@ const chatRouter = new Chat();
 const imageRouter = new Image();
 const playPhrase = new PlayPhrase();
 
-
-// const corsOptions = {
-//   origin: 'https://aidioms-production.up.railway.app',
-//   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-//   allowedHeaders: ['Content-Type', 'Authorization', 'x-api-key'],
-//   credentials: true,
-//   preflightContinue: false,
-//   optionsSuccessStatus: 204
-// };
-
 class App {
   public app: Application;
 
@@ -34,24 +24,19 @@ class App {
     this.routes();
   }
 
-  // private config(): void {
-  //   this.app.use(express.json());
-  //   this.app.use(cors(corsOptions));
-  // }
-
-  private config():void {
+  private config(): void {
     const accessControl: express.RequestHandler = (_req, res, next) => {
       console.log('accessControl');
       res.header('Access-Control-Allow-Origin', ['https://aidioms-production.up.railway.app', 'https://aidiomsbackend-production.up.railway.app']);
       res.header('Access-Control-Allow-Methods', 'GET,POST,DELETE,OPTIONS,PUT,PATCH');
       res.header('Access-Control-Allow-Headers', '*');
-      app.use(cors());
       next();
     };
-
+  
+    this.app.use(cors());
     this.app.use(accessControl);
     this.app.use(express.json());
-  }
+  }  
 
   private routes(): void {
     this.app.get('/', (_req, res) => res.json({ ok: true }));
