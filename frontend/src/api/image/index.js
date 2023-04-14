@@ -14,7 +14,7 @@ export const generateImage = async (token, prompt, quantity) => axios
     {
       headers: {
         'content-type': 'application/json',
-        'x-api-key': X_API_KEY,
+        x_api_key: X_API_KEY,
         authorization: token,
       },
     },

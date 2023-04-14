@@ -1,7 +1,7 @@
 import axios from 'axios';
 import env from 'react-dotenv';
 
-const { BASE_URL } = env;
+const { BASE_URL, X_API_KEY } = env;
 
 export const downloadByUrl = async (url) => axios.post(
   `${BASE_URL}/playphrase/add`,
@@ -12,6 +12,7 @@ export const downloadByUrl = async (url) => axios.post(
     withCredentials: true,
     headers: {
       'content-type': 'application/json',
+      x_api_key: X_API_KEY,
     },
   },
 ).then((data) => data).catch((error) => error);
@@ -22,6 +23,7 @@ export const getVideo = async (query) => axios.get(
     withCredentials: true,
     headers: {
       'content-type': 'application/json',
+      x_api_key: X_API_KEY,
     },
   },
 ).then((response) => response).catch((error) => error);
