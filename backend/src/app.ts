@@ -33,6 +33,10 @@ class App {
   
     this.app.options('*', cors(corsOptions)); // Handle preflight requests
     this.app.use(cors(corsOptions));
+    this.app.use((_req: Request, res: Response, next: NextFunction) => {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      next();
+    });
     this.app.use(express.json());
   }
 
