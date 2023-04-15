@@ -33,9 +33,7 @@ export default class ImageGeneratorService {
       delete filter.size;
     }
     
-    const filteredPrompt = `prompt: ${prompt} ${this.generatePrompt(filter)}`;
-    console.log(filteredPrompt);
-    console.log(Object.keys(filter).length >= 1)
+    const filteredPrompt = `prompt: ${prompt}${this.generatePrompt(filter)}`;
     try {
       const configuration = new Configuration({
         apiKey: process.env.OPENAI_API_KEY,

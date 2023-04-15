@@ -7,7 +7,7 @@
 :root {
   --background: #1F2E35;
   --background-secondary: #30444E;
-  --background-tertiary: #899A96;
+  --background-tertiary: #acb2bd;
   --red: #FF464F;
   --orange: #FF8A34;
   --yellow: #FFC542;
@@ -32,7 +32,8 @@
 body {
   /* background-color: var(--background); */
   color: var(--white);
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
 }
 
 header {
@@ -480,6 +481,70 @@ input::placeholder {
   width: auto;
 }
 
+.image-generator-container fieldset {
+  width: 100%;
+}
+
+.image-generator-container .chat-user-section {
+  width: 100%;
+}
+
+.image-filter {
+  margin: 5px;
+  width: 100%;
+}
+
+.filter {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+  width: 100%;
+}
+
+.filter div {
+  width: 22%;
+}
+
+.filter select {
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.filter .dropdown {
+  background-color: none;
+  height: min-content;
+}
+
+.filter div legend {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.filter .dropdown button {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: max-content;
+}
+
+.filter ul {
+  background-color: var(--background-tertiary);
+  border-radius: 5px;
+  box-shadow: var(--box-shadow);
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.filter ul li:nth-child(1) {
+  justify-content: flex-start;
+  margin-bottom: auto;
+}
+
 /* playphrase */
 .playphrase-container label {
   display: flex;
@@ -494,6 +559,7 @@ input::placeholder {
 }
 
 @media only screen and (max-width: 450px) {
+  /* login */
   .container-login {
     margin-top: 35%;
   }
@@ -520,5 +586,21 @@ input::placeholder {
   .balloon-text {
     overflow: auto;
     white-space: wrap;
+  }
+
+  /* image generator */
+  .image-generator-container, .playphrase-container {
+    flex-direction: column  ;
+    margin: 2.5rem auto;
+    width: 90%;
+  }
+
+  .filter {
+    flex-direction: column;
+  }
+
+  .filter div {
+    margin: 10px 0;
+    width: 100%;
   }
 }
