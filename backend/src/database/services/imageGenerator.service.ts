@@ -21,9 +21,10 @@ export default class ImageGeneratorService {
     Object.entries(filter).forEach((element) => {
       prompt += `${element[0]}: ${element[1]}, `;
     });
-    return `${prompt}, `;
+    return prompt;
     
   }
+
   public static generateImage = async (prompt: string, _userId: number, quantity: number = 1, filter: Filter) => {
     let size = '256x256';
 
@@ -32,16 +33,16 @@ export default class ImageGeneratorService {
       delete filter.size;
     }
     
-    const filteredPrompt = `${this.generatePrompt(filter)}prompt: ${prompt}`;
+    const filteredPrompt = `prompt: ${prompt} ${this.generatePrompt(filter)}`;
     console.log(filteredPrompt);
-    
+    console.log(Object.keys(filter).length >= 1)
     try {
       const configuration = new Configuration({
         apiKey: process.env.OPENAI_API_KEY,
       });
       const openai = new OpenAIApi(configuration);
       const response = await openai.createImage({
-        prompt: filteredPrompt,
+        prompt: Object.keys(filter).length >= 1 ? prompt : filteredPrompt,
         n: quantity,
         response_format: 'b64_json',
         size: size as CreateImageRequestSizeEnum,
