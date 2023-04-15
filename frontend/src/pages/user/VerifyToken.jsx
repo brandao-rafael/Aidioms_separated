@@ -20,7 +20,7 @@ export default function VerifyToken() {
     e.preventDefault();
 
     const response = await resetPassword(code, user.password);
-    console.log(response);
+
     if (response.status === 200) {
       notify('Token verified');
     } else {

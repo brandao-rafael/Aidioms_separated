@@ -1,9 +1,39 @@
-import { Configuration, OpenAIApi } from 'openai';
+import { Configuration, CreateImageRequestSizeEnum, OpenAIApi } from 'openai';
 import 'dotenv/config';
 // import { ImageGenerated } from '../model/image.model';
 
+interface Filter {
+  style?: string;
+  timePeriod?: string;
+  moodTheme?: string;
+  complexity?: string;
+  colorScheme?: string;
+  lighting?: string;
+  setting?: string;
+  perspective?: string;
+  size?: '256x256' | '512x512' | '1024x1024';
+}
+
 export default class ImageGeneratorService {
-  public static generateImage = async (prompt: string, _userId: number, quantity: number = 1) => {
+  private static generatePrompt = (filter: Filter) => {
+    let prompt = ''
+    if (Object.entries(filter).length === 0 && filter.constructor === Object) return '';
+    Object.entries(filter).forEach((element) => {
+      prompt += `${element[0]}: ${element[1]}, `;
+    });
+    return `${prompt}, `;
+    
+  }
+  public static generateImage = async (prompt: string, _userId: number, quantity: number = 1, filter: Filter) => {
+    let size = '256x256';
+
+    if (filter?.size) {
+      size = filter.size;
+      delete filter.size;
+    }
+    
+    const filteredPrompt = `${this.generatePrompt(filter)}prompt: ${prompt}`;
+    console.log(filteredPrompt);
     
     try {
       const configuration = new Configuration({
@@ -11,10 +41,10 @@ export default class ImageGeneratorService {
       });
       const openai = new OpenAIApi(configuration);
       const response = await openai.createImage({
-        prompt,
+        prompt: filteredPrompt,
         n: quantity,
         response_format: 'b64_json',
-        size: "256x256",
+        size: size as CreateImageRequestSizeEnum,
       });
       const b64Json = response.data.data;
       return b64Json;
