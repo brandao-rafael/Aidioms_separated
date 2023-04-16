@@ -152,7 +152,10 @@ export default function ImageGenerator() {
                   type="range"
                   min="1"
                   max="4"
-                  style={{ width: '100%', marginTop: '15px' }}
+                  style={{
+                    width: '100%',
+                    marginTop: '15px',
+                  }}
                   value={quantity}
                   onChange={(e) => setQuantity(e.target.value)}
                 />

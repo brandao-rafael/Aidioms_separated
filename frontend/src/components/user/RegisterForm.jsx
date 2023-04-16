@@ -138,7 +138,7 @@ function RegisterForm() {
               required
             />
           </label>
-          <div>
+          <div style={{ position: 'relative' }}>
             <label htmlFor="password" className="label-signup">
               <div className="icon-signup icon-password">
                 <i className="fa fa-lock" aria-hidden="true" />
@@ -154,24 +154,26 @@ function RegisterForm() {
                 minLength="8"
                 required
               />
-              {isPasswordHiden ? (
-                <button
-                  type="button"
-                  className="btn-hide"
-                  style={style}
-                  onClick={passwordShowHide}
-                >
-                  <i className="fas fa-eye-slash" id="hide_eye" />
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  className="btn-hide"
-                  onClick={passwordShowHide}
-                >
-                  <i className="fas fa-eye" id="show_eye" />
-                </button>
-              )}
+              <button
+                type="button"
+                className="btn-hide"
+                onClick={passwordShowHide}
+                style={{
+                  position: 'absolute',
+                  top: '50%',
+                  right: '5px',
+                  transform: 'translateY(-50%)',
+                  border: 'none',
+                  background: 'transparent',
+                  cursor: 'pointer',
+                  outline: 'none',
+                  padding: 0,
+                }}
+              >
+                {isPasswordHiden
+                  ? <i className="fas fa-eye-slash" id="hide_eye" />
+                  : <i className="fas fa-eye" id="show_eye" />}
+              </button>
             </label>
           </div>
         </div>

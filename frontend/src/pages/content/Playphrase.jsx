@@ -7,7 +7,7 @@ import AiContext from '../../hooks/AiContext';
 import UserInput from '../../components/UserInput';
 
 export default function Playphrase() {
-  const { notify, isLogged } = useContext(AiContext);
+  const { notify, isLogged, style } = useContext(AiContext);
   const [src, setSrc] = useState();
 
   const searchVideo = async (query) => {
@@ -29,12 +29,13 @@ export default function Playphrase() {
     <div>
       <Header />
       <div className="playphrase-container">
+        <h1 style={{ color: style.color }}>Playphrase</h1>
         <UserInput submitMessage={searchVideo} />
         {src && <VideoPlayer urls={src} />}
       </div>
       <ToastContainer
         position="top-center"
-        autoClose={15000}
+        autoClose={100000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick

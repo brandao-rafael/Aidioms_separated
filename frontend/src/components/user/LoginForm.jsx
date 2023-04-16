@@ -131,26 +131,36 @@ function LoginForm() {
             <div className="login-icon icon-password">
               <i className="fa fa-lock" aria-hidden="true" />
             </div>
-            <input
-              type={isPasswordLoginHiden ? 'password' : 'text'}
-              name="password"
-              value={user.password}
-              id="password-input"
-              style={style}
-              placeholder="********"
-              onChange={(e) => handleChange(e)}
-              required
-            />
-            {isPasswordLoginHiden
-              ? (
-                <button type="button" className="btn-hide" style={style} onClick={passwordShowHide}>
-                  <i className="fas fa-eye-slash" id="hide_eye" />
-                </button>
-              ) : (
-                <button type="button" className="btn-hide" style={style} onClick={passwordShowHide}>
-                  <i className="fas fa-eye" id="show_eye" />
-                </button>
-              )}
+            <div style={{ position: 'relative', display: 'inline-block' }}>
+              <input
+                type={isPasswordLoginHiden ? 'password' : 'text'}
+                name="password"
+                value={user.password}
+                id="password-input"
+                style={style}
+                placeholder="********"
+                onChange={(e) => handleChange(e)}
+                required
+              />
+              <button
+                type="button"
+                className="btn-hide"
+                style={{
+                  position: 'absolute',
+                  top: '50%',
+                  right: '5px',
+                  transform: 'translateY(-50%)',
+                  border: 'none',
+                  background: 'transparent',
+                  cursor: 'pointer',
+                }}
+                onClick={passwordShowHide}
+              >
+                {isPasswordLoginHiden
+                  ? <i className="fas fa-eye-slash" id="hide_eye" />
+                  : <i className="fas fa-eye" id="show_eye" />}
+              </button>
+            </div>
           </label>
         </div>
         <button

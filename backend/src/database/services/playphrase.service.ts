@@ -30,23 +30,16 @@ export default class playPhrase {
     ).then((data) => data).catch((error) => error);
   }
 
-  private static getDataVideo = async (query: string) => {
-    return await axios.get(
-      `${process.env.PS_BASE_URL}${query}`,
-      {
-        headers: {
-          'content-type': 'application/json',
-        },
-      },
-    ).then((data) => data).catch((error) => error);
-  }
-
   static getVideoBySearch = async (query: string) => {
     const response = await this.search(query);
     const arrayClips: string[] = []
-    response.data.clips.map((url: string) => {
-      arrayClips.push(`${process.env.PS_BASE_URL}${url}`)
-    })
+    console.log(response);
+    
+    // response.data.clips.map((url: string) => {
+    //   arrayClips.push(`${process.env.PS_BASE_URL}${url}`)
+    console.log(process.env.PS_BASE_URL);
+      
+    // })
     return arrayClips;
   }
 }
