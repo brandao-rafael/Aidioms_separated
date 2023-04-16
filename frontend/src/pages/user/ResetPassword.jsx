@@ -2,38 +2,44 @@ import React, { useContext, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { sendEmailResetPassword } from '../../api';
 import AiContext from '../../hooks/AiContext';
+import aidioms from '../../assets/images/aidioms_logo.png';
 
 function ResetPassword() {
-  const { notify } = useContext(AiContext);
+  const { notify, style } = useContext(AiContext);
 
   const [email, setEmail] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    await sendEmailResetPassword(email);
-
+    const response = await sendEmailResetPassword(email);
+    if (response.error) {
+      notify('Somethig went wrong, please try again');
+      return;
+    }
     notify(`Password reset email sent to: ${email}`);
   };
 
   return (
-    <div className="reset-password">
-      <h2>Reset Password</h2>
+    <div className="reset-password-page">
+      <h1 style={{ color: style.color, marginTop: '50px' }}>Reset Password</h1>
+      <img src={aidioms} alt="aidioms logo" style={{ width: '300px' }} />
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">
-            Email:
+        <div className="input-container">
+          <legend style={{ color: style.color }}>Insert your email</legend>
+          <label htmlFor="email" style={{ color: style.color }}>
             <input
+              style={style}
               type="email"
               id="email"
               name="email"
+              className="reset-senha-email-input"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
+            <button className="btn btn-outline-success" type="submit">Send Reset Link</button>
           </label>
         </div>
-        <button type="submit">Send Reset Link</button>
       </form>
       <ToastContainer
         position="top-center"
