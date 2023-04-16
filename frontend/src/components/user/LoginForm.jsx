@@ -108,7 +108,7 @@ function LoginForm() {
     toast.dismiss();
   }, []);
   return (
-    <form style={style}>
+    <form style={{ color: style.color }} className="fieldset-container-login">
       <div className="fieldset-container-login">
         <span className="login-description" style={{ color: style.color }}>Sign in to continue</span>
         <div className="container-input">

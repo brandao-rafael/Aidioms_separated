@@ -642,6 +642,24 @@ input::placeholder {
     overflow: auto;
     white-space: wrap;
   }
+  .fieldset-container-login {
+    background-color: transparent;
+  }
+
+  header {
+    font-size: 12px;
+  }
+
+  .container-login {
+    margin: 0 auto;
+    height: 100vh;
+    width: 100%;
+  }
+
+  .container-input {
+    margin: 0 auto;
+    width: 100%;
+  }
 
   /* image generator */
   .image-generator-container, .playphrase-container {
