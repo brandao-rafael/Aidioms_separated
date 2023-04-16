@@ -53,11 +53,6 @@ li {
   margin: 5px 15px;
 }
 
-li:nth-child(1) {
-  justify-content: flex-end;
-  margin-bottom: 15px;
-}
-
 input::placeholder {
   color: var(--light-gray);
 }
@@ -77,7 +72,12 @@ input::placeholder {
 .validation-content {
   display: flex;
   flex-direction: column;
-  margin: 20%
+  margin: auto;
+  width: 50%;
+}
+
+.validation-content img {
+  margin: 30px auto;
 }
 
 .validation-content h3 {
@@ -91,10 +91,11 @@ input::placeholder {
 }
 
 .validation-content input {
-  background-color: var(--background-secondary);
-  border: solid 1px var(--background-tertiary);
-  color: var(--white);
-  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+  height: 50px;
+  margin: 10px 0;
+  padding: 0 10px;
 }
 
 .login-description, .signup-description {
@@ -202,15 +203,19 @@ input::placeholder {
 .sign-in-link-content {
   color: var(--background-tertiary);
   display: flex;
+  flex-direction: column;
   margin: 10px auto;
+  text-align: center;
   width: fit-content;
 }
 
 .sign-in-link {
   color: var(--green);
+  font-size: 20px;
+  font-weight: 700;
   text-decoration: none;
   transition: var(--transition);
-  margin: 0 5px;
+  margin: -15px 5px;
 }
 
 .sign-in-link:hover {
@@ -407,7 +412,7 @@ input::placeholder {
   display: flex;
   flex-flow: column;
   margin: 10px 30px;
-  max-width: 50%;
+  width: auto;
   padding: 10px;
   position: relative;
 }
@@ -594,12 +599,6 @@ input::placeholder {
   width: 100%;
 }
 
-.filter ul li:nth-child(1) {
-  justify-content: flex-start;
-  margin-bottom: auto;
-}
-
-
 /* playphrase */
 .playphrase-container label {
   display: flex;
@@ -626,6 +625,24 @@ input::placeholder {
   overflow: hidden;
   text-overflow: ellipsis;
   margin-left: 5px;
+}
+
+.not-found-container {
+  align-items: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  text-align: center;
+}
+
+.not-found-container * {
+  margin: 25px;
+}
+
+.not-found-container p {
+  font-size: 25px;
 }
 
 @media only screen and (max-width: 1044px) {

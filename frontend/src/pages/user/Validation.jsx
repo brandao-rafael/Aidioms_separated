@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import { validateEmailUser } from '../../api/user';
 import AiContext from '../../hooks/AiContext';
+import aidiomsLogo from '../../assets/images/aidioms_logo.png';
 
 export default function Validation() {
   const history = useHistory();
@@ -30,8 +31,9 @@ export default function Validation() {
   };
 
   return (
-    <div>
+    <div className="main-validation">
       <div className="validation-content" style={{ color: style.color }}>
+        <img src={aidiomsLogo} alt="logo" style={{ width: '300px' }} />
         <h3 style={{ color: style.color }}>Please enter the code received in the email below.</h3>
         <label htmlFor="emailValidation">
           Email:

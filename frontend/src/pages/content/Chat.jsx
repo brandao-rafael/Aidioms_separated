@@ -162,8 +162,15 @@ function Chat() {
     <div className="chat-container">
       <Header />
       <div className="chat-header" style={{ color: style.color }}>
-        <img className="chat-ia-picture" src={aidioms} alt="logo" style={{ width: '5%' }} />
-        <h3 className="chat-ia-name" style={{ color: style.color }}>Ai.dioms</h3>
+        <div className="chat-header">
+          <img className="chat-ia-picture" src={aidioms} alt="logo" style={{ width: '5%' }} />
+          <h3 className="chat-ia-name" style={{ color: style.color }}>A.I.Dioms</h3>
+        </div>
+        <div>
+          <button type="button" className="btn btn-outline-danger" onClick={() => window.location.reload()}>
+            Restart chat
+          </button>
+        </div>
       </div>
       <div className="chat-conversation" style={{ backgroundColor: style.backgroundColor }} ref={messageEl}>
         {hasConversation && messageData.map((data) => (

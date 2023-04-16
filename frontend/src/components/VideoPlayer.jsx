@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import AiContext from '../hooks/AiContext';
 
 export default function VideoPlayer({ urls, subtitle }) {
-  console.log(urls, subtitle);
   const { style } = useContext(AiContext);
   const [selectedUrl, setSelectedUrl] = useState(urls && urls.length > 0 ? urls[0] : null);
   const [index, setIndex] = useState(0);
@@ -23,7 +22,7 @@ export default function VideoPlayer({ urls, subtitle }) {
         {subtitle[index] && (
         <div style={style} className="video-subtitle">
           {
-          subtitle[index].charAt(0).toUpperCase() + subtitle[index].slice(1)
+          subtitle[index]
         }
         </div>
         )}
@@ -47,7 +46,7 @@ export default function VideoPlayer({ urls, subtitle }) {
           >
             <ReactPlayer url={url} width="auto" height="70px" />
             <span style={{ color: style.color }} className="subtitle-preview">
-              {subtitle[i].charAt(0).toUpperCase() + subtitle[i].slice(1)}
+              {subtitle[i]}
             </span>
           </div>
         ))}

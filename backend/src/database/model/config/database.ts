@@ -5,7 +5,7 @@ import { Options } from 'sequelize';
 const config: Options = {
   username: process.env.MYSQLUSER,
   password: process.env.MYSQLPASSWORD,
-  database: process.env.MYSQLDATABASE, //|| 'railway' <- production,
+  database: process.env.MYSQLDATABASE || 'railway',
   host: process.env.MYSQLHOST,
   port: Number(process.env.MYSQLPORT),
   dialect: 'mysql',

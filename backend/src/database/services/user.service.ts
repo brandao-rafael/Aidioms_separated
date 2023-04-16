@@ -50,11 +50,91 @@ export default class UserService {
       code: code.toString(),
     });
 
+    const html = `
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #1E3B5B;
+            color: #ffffff;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .verification-code {
+            background-color: #00AFD8;
+            color: #ffffff;
+            font-size: 2rem;
+            font-weight: bold;
+            padding: 20px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 20px 0;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.8rem;
+            color: #888888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>JETLabs A.I.Dioms</h1>
+        </div>
+        <div class="content">
+            <p>Dear user,</p>
+            <p>Thank you for choosing A.I.Dioms by JETLabs. Please find your verification code below:</p>
+            <div class="verification-code">
+                ${code}
+            </div>
+            <p>Please enter this code in the app to complete the verification process.</p>
+            <p>If you didn't request this code, please ignore this email.</p>
+            <p>Best regards,</p>
+            <p>The JETLabs Team</p>
+        </div>
+        <div class="footer">
+            &copy; JETLabs, All Rights Reserved
+        </div>
+    </div>
+</body>
+</html>
+    `
+
     const mailOptions = {
       from: process.env.EMAIL_ADDRESS,
       to: email,
       subject: 'Verification code',
-      html: `Your verification code is ${code}`,
+      html: html,
     };
 
     await transporter.sendMail(mailOptions);
@@ -116,30 +196,106 @@ export default class UserService {
   }
 
   public static async sendPasswordResetEmail(email: string): Promise<string | undefined> {
-    try {
-      const user = await User.findOne({ where: { email } });
-    
-      if (!user) {
-        return 'User not found';
-      }
-    
-      const token = crypto.randomBytes(32).toString('hex');
-      const expires = new Date(Date.now() + tokenExpirationTime);
-    
-      await UserCode.create({ userId: user.id, code: token, expires });
-    
-      const mailOptions = {
-        from: process.env.EMAIL_ADDRESS,
-        to: email,
-        subject: 'Password Reset',
-        html: `Click the link to reset your password: <a href="http://localhost:3000/verify-token?token=${token}">Reset Password</a>`,
-      };
-    
-      await transporter.sendMail(mailOptions);
-      return 'Password reset email sent';
-    } catch (error) {
-      console.log(error);
+    const user = await User.findOne({ where: { email } });
+  
+    if (!user) {
+      return 'User not found';
     }
+  
+    const token = crypto.randomBytes(32).toString('hex');
+    const expires = new Date(Date.now() + tokenExpirationTime);
+  
+    await UserCode.create({ userId: user.id, code: token, expires });
+
+    const passwordResetLink = `http://localhost:3000/verify-token?token=${token}`;
+
+    const htmlResetLink = `
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+      body {
+          font-family: Arial, sans-serif;
+          background-color: #f4f4f4;
+          margin: 0;
+          padding: 0;
+      }
+
+      .container {
+          max-width: 600px;
+          margin: 0 auto;
+          background-color: #ffffff;
+          padding: 20px;
+      }
+
+      .header {
+          text-align: center;
+          padding: 20px 0;
+          background-color: #1E3B5B;
+          color: #cce7f3;
+      }
+
+      .header h1 {
+          margin: 0;
+      }
+
+      .content {
+          padding: 20px;
+          text-align: center;
+      }
+
+      .reset-link {
+          background-color: #00AFD8;
+          color: #ffffff;
+          font-size: 1rem;
+          font-weight: bold;
+          padding: 10px 20px;
+          border-radius: 5px;
+          display: inline-block;
+          margin: 20px 0;
+          text-decoration: none;
+      }
+
+      .footer {
+          text-align: center;
+          padding: 20px 0;
+          font-size: 0.8rem;
+          color: #888888;
+      }
+  </style>
+</head>
+<body>
+  <div class="container">
+      <div class="header">
+          <h1>JETLabs A.I.Dioms</h1>
+      </div>
+      <div class="content">
+          <p>Dear user,</p>
+          <p>We have received a password reset request for your A.I.Dioms account. To reset your password, please click the button below:</p>
+          <a href=${passwordResetLink} class="reset-link">Reset Password</a>
+          <p>If you didn't request this password reset, please ignore this email.</p>
+          <p>Best regards,</p>
+          <p>The JETLabs Team</p>
+      </div>
+      <div class="footer">
+          &copy; JETLabs, All Rights Reserved
+      </div>
+  </div>
+</body>
+</html>
+    `
+  
+    const mailOptions = {
+      from: process.env.EMAIL_ADDRESS,
+      to: email,
+      subject: 'Password Reset',
+      html: htmlResetLink,
+      };
+  
+    await transporter.sendMail(mailOptions);
+    return 'Password reset email sent';
   }
   
   public static async verifyResetToken(token: string): Promise<User | null> {

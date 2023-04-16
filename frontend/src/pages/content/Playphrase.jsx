@@ -17,7 +17,6 @@ export default function Playphrase() {
       const response = await getVideo(query.replace(/[^a-zA-Z0-9]/g, '').toLowerCase());
       setSubtitle(response.data.data.arraySegments);
       setSrc(response.data.data.arrayClips);
-      console.log(response.data.data);
       toast.dismiss();
     } catch (error) {
       notify('something gone wrong');

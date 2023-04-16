@@ -47,7 +47,6 @@ function UserInput({ submitMessage }) {
         type="button"
         className="btn btn-outline-success"
         onClick={async () => {
-          setUserMessage('');
           await submitMessage(userMessage);
         }}
       >

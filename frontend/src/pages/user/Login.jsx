@@ -10,7 +10,7 @@ export default function Login() {
 
   return (
     <div className="container-login" style={{ ...style, borderRadius: '5px' }}>
-      <img src={aidioms} alt="aidioms logo" style={{ width: '300px' }} />
+      <img src={aidioms} alt="aidioms logo" style={{ width: '128px' }} />
       <LoginForm />
       {/*  Docs - https://fkhadra.github.io/react-toastify/introduction/ */}
       <ToastContainer

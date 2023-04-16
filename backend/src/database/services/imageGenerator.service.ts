@@ -15,7 +15,7 @@ export default class ImageGeneratorService {
   }
 
   public static generateImage = async (prompt: string, _userId: number, quantity: number = 1, filter: Filter) => {
-    let size = '256x256';
+    let size = '512x512';
 
     if (filter?.size) {
       size = filter.size;

@@ -22,8 +22,6 @@ export default class PlayphraseController {
       
       return res.status(200).json({ data });
     } catch (error) {
-      console.log(error);
-      
       return res.status(500).end();
     }
   };

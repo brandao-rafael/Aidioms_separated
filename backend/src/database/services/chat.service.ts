@@ -83,7 +83,8 @@ export default class ChatService {
     userSessionId: number,
   ) => {
     try {
-      const completion = await this.getOutput(userId.toString(), historic);
+      const historicToSend = [{ role: 'system', content: 'You are a helpful assistant for English Classes. You must help the teacher. You must only answer in markdown format.' }, ...historic];
+      const completion = await this.getOutput(userId.toString(), historicToSend as IHistoric[]);
       await this.insertChat(
         userSessionId,
         prompt,

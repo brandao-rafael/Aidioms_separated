@@ -110,7 +110,7 @@ function LoginForm() {
   return (
     <form style={{ color: style.color }} className="fieldset-container-login">
       <div className="fieldset-container-login">
-        <span className="login-description" style={{ color: style.color }}>Sign in to continue</span>
+        <span className="login-description" style={{ color: style.color, textAlign: 'center' }}>Sign in to continue</span>
         <div className="container-input">
           <label htmlFor="email-input" className="input-login-label">
             <div className="login-icon user-icon">

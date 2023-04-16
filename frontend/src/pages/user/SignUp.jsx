@@ -10,8 +10,7 @@ export default function SignUp() {
   const { style } = useContext(AiContext);
   return (
     <div className="signup-container" style={style}>
-      <h1>Hello!</h1>
-      <span className="signup-description" style={style}>Lets introduce</span>
+      <h1>Register</h1>
       <RegisterForm />
       <ToastContainer
         position="top-center"

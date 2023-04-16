@@ -10,9 +10,9 @@ export default function ConversationInit({ submit }) {
     style,
   } = useContext(AiContext);
   const [examples] = useState([
-    'Explain me how a plane can fly',
-    'Explain general relativity theory to a children',
-    'Give me examples of you can do',
+    'Create 3 English phrasal verb exercises.',
+    'Explain the verb "to be" to a 5-year-old child.',
+    'How can you support my English classroom?',
   ]);
 
   const handleNewConversation = async (value) => {
@@ -56,9 +56,9 @@ export default function ConversationInit({ submit }) {
           <h3>Capabilities</h3>
         </div>
         <div className="capacity-content">
-          <p>Remembers what user said earlier in the conversation</p>
-          <p>Allows user to provide follow-up corrections</p>
-          <p>Trained to decline inappropriate requests</p>
+          <p>Remembers what user said earlier in the conversation;</p>
+          <p>Allows user to provide follow-up corrections;</p>
+          <p>Trained to decline inappropriate requests.</p>
         </div>
         <div className="capacity-content" />
         <div className="capacity-content" />
@@ -66,13 +66,15 @@ export default function ConversationInit({ submit }) {
       <div className="limitation-chat">
         <div className="limitation-content-title">
           <i className="fa fa-exclamation-triangle" aria-hidden="true" />
-          <h3>Limitations</h3>
+          <h3>General Guide</h3>
         </div>
         <div className="limitation-content">
-          <p>May occasionally generate incorrect information</p>
+          <p>
+            May occasionally generate incorrect information;
+          </p>
         </div>
         <div className="limitation-content">
-          <p>May occasionally produce harmful instructions or biased content</p>
+          <p>Avoid ambiguous questions, be specific and provide clear tasks;</p>
         </div>
         <div className="limitation-content">
           <p>Limited knowledge of world and events after 2021</p>

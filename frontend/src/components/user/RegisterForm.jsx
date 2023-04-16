@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import dayjs from 'dayjs';
 import React, { useContext, useEffect, useState } from 'react';
 import { Calendar } from 'react-calendar';
@@ -129,6 +130,7 @@ function RegisterForm() {
             <input
               type="text"
               placeholder="Your phone"
+              mask="(99) 99999-9999"
               id="phone"
               name="phone"
               style={style}
@@ -245,7 +247,6 @@ function RegisterForm() {
         </button>
         <span className="sign-in-link-content" style={style}>
           <p>Already have an account?</p>
-          {' '}
           <Link to="/" className="sign-in-link">Sign In</Link>
         </span>
       </fieldset>

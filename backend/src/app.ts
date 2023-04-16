@@ -24,28 +24,9 @@ class App {
     this.routes();
   }
 
-  // private config(): void {
-  //   const corsOptions = {
-  //     origin: "https://aidioms-production.up.railway.app",
-  //     methods: 'GET,POST,DELETE,OPTIONS,PUT,PATCH',
-  //     allowedHeaders: 'Content-Type,Authorization,X-Requested-With,x_api_key',
-  //     credentials: true,
-  //   };
-  
-  //   this.app.options('*', cors(corsOptions)); // Handle preflight requests
-  //   this.app.use(cors(corsOptions));
-  
-  //   this.app.use((_req: Request, res: Response, next: NextFunction) => {
-  //     res.setHeader('Access-Control-Allow-Origin', "https://aidioms-production.up.railway.app");
-  //     res.setHeader('Access-Control-Allow-Credentials', 'true');
-  //     next();
-  //   });
-  
-  //   this.app.use(express.json());
-  // }
   private config(): void {
     const corsOptions = {
-      origin: "http://localhost:3000",
+      origin: "https://aidioms-production.up.railway.app",
       methods: 'GET,POST,DELETE,OPTIONS,PUT,PATCH',
       allowedHeaders: 'Content-Type,Authorization,X-Requested-With,x_api_key',
       credentials: true,
@@ -55,13 +36,13 @@ class App {
     this.app.use(cors(corsOptions));
   
     this.app.use((_req: Request, res: Response, next: NextFunction) => {
-      res.setHeader('Access-Control-Allow-Origin', "http://localhost:3000");
+      res.setHeader('Access-Control-Allow-Origin', "https://aidioms-production.up.railway.app");
       res.setHeader('Access-Control-Allow-Credentials', 'true');
       next();
     });
   
     this.app.use(express.json());
-  }  
+  } 
 
   private routes(): void {
     this.app.get('/', (_req, res) => res.json({ ok: true }));
