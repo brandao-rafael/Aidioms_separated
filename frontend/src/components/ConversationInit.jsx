@@ -34,7 +34,7 @@ export default function ConversationInit({ submit }) {
       <div className="subject-sujestion-chat">
         <div className="subject-content-title">
           <i className="fa fa-hashtag" aria-hidden="true" />
-          <h3>Sujestions</h3>
+          <h3>Suggestions</h3>
         </div>
         {examples.slice(0, 3).map((example) => (
           <div className="subject-content" key={`${example.replace(' ', '-')}-${Date.now()}`}>
