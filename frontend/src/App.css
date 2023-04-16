@@ -639,6 +639,23 @@ input::placeholder {
     margin-left: -30px;
   }
 
+  .signup-container {
+    height: 100vh;
+    margin: 0;
+    width: 100%;
+  }
+
+  .sign-in-link-content {
+    flex-direction: column;
+    margin: auto;
+    text-align: center;
+  }
+
+  .sign-in-link-content p {
+    margin: 0;
+  }
+
+
   /* chat */
   .main-chat-init {
     flex-direction: column;
