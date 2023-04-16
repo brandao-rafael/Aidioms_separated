@@ -8,23 +8,23 @@ export default function Header() {
   } = useContext(AiContext);
   return (
     <header style={style}>
-      <nav className="header-navbar" style={style}>
-        <Link to="/chat" style={style}>
+      <nav className="header-navbar" style={{ color: style.color }}>
+        <Link to="/chat" style={{ color: style.color }}>
           <i className="fa fa-comment" aria-hidden="true" />
           {' '}
           Chat
         </Link>
-        <Link to="image" style={style}>
+        <Link to="image" style={{ color: style.color }}>
           <i className="fa fa-camera" aria-hidden="true" />
           {' '}
           Image Generator
         </Link>
-        <Link to="/playphrase" style={style}>
+        <Link to="/playphrase" style={{ color: style.color }}>
           <i className="fa fa-play" aria-hidden="true" />
           {' '}
           Playphrase
         </Link>
-        <div className="dropdown" style={style}>
+        <div className="dropdown" style={{ color: style.color }}>
           <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style={{ ...style, border: 'none' }}>
             <i className="fa fa-ellipsis-h" aria-hidden="true" />
           </button>

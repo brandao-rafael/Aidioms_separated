@@ -613,7 +613,22 @@ input::placeholder {
   width: 70%;
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 1044px) {
+  .image-generator-container fieldset {
+    width: 100%;
+  }
+
+  .filter {
+    flex-direction: column;
+  }
+
+  .filter div {
+    margin: 10px 0;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
   /* login */
   .container-login {
     margin-top: 35%;

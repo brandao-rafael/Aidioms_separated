@@ -37,11 +37,10 @@ export default class playPhrase {
     const arrayClips: string[] = []
     console.log(response);
     
-    response.data.clips.map((url: string) => {
-      arrayClips.push(`${process.env.PS_BASE_URL}${url}`)
-      console.log(process.env.PS_BASE_URL);
+    // response.data.clips.map((url: string) => {
+    //   arrayClips.push(`${process.env.PS_BASE_URL}${url}`)
       
-    })
+    // })
     return arrayClips;
   }
 }
