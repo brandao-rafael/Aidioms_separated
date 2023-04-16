@@ -3,9 +3,11 @@ import ReactPlayer from 'react-player';
 import PropTypes from 'prop-types';
 import AiContext from '../hooks/AiContext';
 
-export default function VideoPlayer({ urls }) {
+export default function VideoPlayer({ urls, subtitle }) {
+  console.log(urls, subtitle);
   const { style } = useContext(AiContext);
   const [selectedUrl, setSelectedUrl] = useState(urls && urls.length > 0 ? urls[0] : null);
+  const [index, setIndex] = useState(0);
 
   if (!urls || urls.length === 0) {
     return <div>No video found.</div>;
@@ -18,9 +20,16 @@ export default function VideoPlayer({ urls }) {
     >
       <div style={{ width: 'auto' }}>
         <ReactPlayer url={selectedUrl} controls />
+        {subtitle[index] && (
+        <div style={style} className="video-subtitle">
+          {
+          subtitle[index].charAt(0).toUpperCase() + subtitle[index].slice(1)
+        }
+        </div>
+        )}
       </div>
       <div style={{ width: '30%' }}>
-        {urls.map((url) => (
+        {urls.map((url, i) => (
           // eslint-disable-next-line jsx-a11y/no-static-element-interactions
           <div
             key={url}
@@ -29,11 +38,17 @@ export default function VideoPlayer({ urls }) {
               backgroundColor: url === selectedUrl ? style.backgroundColor : 'transparent',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'space-evenly',
+              marginLeft: '10px',
             }}
-            onClick={() => setSelectedUrl(url)}
+            onClick={() => {
+              setSelectedUrl(url);
+              setIndex(i);
+            }}
           >
             <ReactPlayer url={url} width="auto" height="70px" />
+            <span style={{ color: style.color }} className="subtitle-preview">
+              {subtitle[i].charAt(0).toUpperCase() + subtitle[i].slice(1)}
+            </span>
           </div>
         ))}
       </div>
@@ -43,5 +58,6 @@ export default function VideoPlayer({ urls }) {
 
 VideoPlayer.propTypes = {
   urls: PropTypes.arrayOf(PropTypes.string).isRequired,
+  subtitle: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 // docs: https://www.npmjs.com/package/react-player

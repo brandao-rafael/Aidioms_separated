@@ -11,7 +11,7 @@ export default class playPhrase {
       {
         headers: {
           'content-type': 'application/json',
-          'x_api_key': process.env.X_API_KEY,
+          authentication: process.env.X_API_KEY,
         },
       },
     ).then((data) => data).catch((error) => error);
@@ -26,7 +26,7 @@ export default class playPhrase {
       {
         headers: {
           'content-type': 'application/json',
-          'x_api_key': process.env.X_API_KEY,
+          authentication: process.env.X_API_KEY,
         },
       },
     ).then((data) => data).catch((error) => error);
@@ -34,13 +34,13 @@ export default class playPhrase {
 
   static getVideoBySearch = async (query: string) => {
     const response = await this.search(query);
-    const arrayClips: string[] = []
-    console.log(response);
+    const arrayClips: string[] = [];
+    const arraySegments: string[] = [];
     
-    // response.data.clips.map((url: string) => {
-    //   arrayClips.push(`${process.env.PS_BASE_URL}${url}`)
-      
-    // })
-    return arrayClips;
+    response.data.clips.map((url: string, i: number) => {
+      arrayClips.push(`${process.env.PS_BASE_URL}${url}`)
+      arraySegments.push(response.data.segments[i].content)
+    })
+    return {arrayClips, arraySegments};
   }
 }

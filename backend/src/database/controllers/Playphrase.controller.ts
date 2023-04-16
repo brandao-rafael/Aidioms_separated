@@ -16,12 +16,11 @@ export default class PlayphraseController {
 
   public getVideo = async (req: Request, res: Response): Promise<void | Response> => {
     const { query } = req.query;
-    console.log(query);
     
     try {
-      const videoUrls = await playPhrase.getVideoBySearch(query as string);
+      const data = await playPhrase.getVideoBySearch(query as string);
       
-      return res.status(200).json({ urls: videoUrls });
+      return res.status(200).json({ data });
     } catch (error) {
       console.log(error);
       

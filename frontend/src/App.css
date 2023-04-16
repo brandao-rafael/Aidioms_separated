@@ -613,6 +613,21 @@ input::placeholder {
   width: 70%;
 }
 
+.video-subtitle {
+  font-size: 25px;
+  font-weight: 500;
+  padding: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.subtitle-preview {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: 5px;
+}
+
 @media only screen and (max-width: 1044px) {
   .image-generator-container fieldset {
     width: 100%;

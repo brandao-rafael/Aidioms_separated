@@ -9,12 +9,15 @@ import UserInput from '../../components/UserInput';
 export default function Playphrase() {
   const { notify, isLogged, style } = useContext(AiContext);
   const [src, setSrc] = useState();
+  const [subtitle, setSubtitle] = useState();
 
   const searchVideo = async (query) => {
     notify('Loading ...');
     try {
       const response = await getVideo(query.replace(/[^a-zA-Z0-9]/g, '').toLowerCase());
-      setSrc(response.data.urls);
+      setSubtitle(response.data.data.arraySegments);
+      setSrc(response.data.data.arrayClips);
+      console.log(response.data.data);
       toast.dismiss();
     } catch (error) {
       notify('something gone wrong');
@@ -31,7 +34,7 @@ export default function Playphrase() {
       <div className="playphrase-container">
         <h1 style={{ color: style.color }}>Playphrase</h1>
         <UserInput submitMessage={searchVideo} />
-        {src && <VideoPlayer urls={src} />}
+        {src && <VideoPlayer urls={src} subtitle={subtitle} />}
       </div>
       <ToastContainer
         position="top-center"
