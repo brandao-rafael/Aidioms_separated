@@ -19,9 +19,9 @@ export default class PlayphraseController {
     
     try {
       const data = await playPhrase.getVideoBySearch(query as string);
-      
       return res.status(200).json({ data });
     } catch (error) {
+      console.log(error);
       return res.status(500).end();
     }
   };

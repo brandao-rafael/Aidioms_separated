@@ -50,9 +50,11 @@ export default class UserController {
       const validated = await UserService.validateUser(email, Number(validationCode));
       if (validated) {
         return res.status(204).json({ message: 'ok' });
+      } else {
+        return res.status(401).json({ message: 'Invalid Validation Code' });
       }
     } catch (error) {
-      return res.status(401).json({ message: 'Invalid Validation Code' });
+        return res.status(500).json({ message: 'Internal Server Error' });
     }
   };
 

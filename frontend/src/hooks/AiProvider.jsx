@@ -86,6 +86,14 @@ function AiProvider({ children }) {
     }
   }, [theme]);
 
+  // image
+  const [url, setUrl] = useState([]);
+  const [filter, setFilter] = useState({});
+
+  // playphrase
+  const [src, setSrc] = useState();
+  const [subtitle, setSubtitle] = useState();
+
   const context = useMemo(() => ({
     emailRegex,
     notify,
@@ -106,6 +114,14 @@ function AiProvider({ children }) {
     lsTheme,
     setUserLS,
     userLogged,
+    src,
+    setSrc,
+    subtitle,
+    setSubtitle,
+    url,
+    setUrl,
+    filter,
+    setFilter,
     toggleTheme,
     quantity,
     setQuantity,
@@ -130,6 +146,10 @@ function AiProvider({ children }) {
     messageData,
     hasConversation,
     cortexId,
+    src,
+    subtitle,
+    filter,
+    url,
     sessionId,
     lsTheme,
     userLS,
