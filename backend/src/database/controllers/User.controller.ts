@@ -54,7 +54,6 @@ export default class UserController {
         return res.status(401).json({ message: 'Invalid Validation Code' });
       }
     } catch (error) {
-        console.log(error);
         return res.status(500).json({ message: 'Internal Server Error' });
     }
   };
