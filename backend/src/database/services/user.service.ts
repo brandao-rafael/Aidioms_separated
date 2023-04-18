@@ -151,9 +151,13 @@ export default class UserService {
   }
 
   public static async validateUser(email:string, validationCode:number) {
+    console.log(email, validationCode);
+    
     const user = await User.findOne({ where: { email } });
     const code = await UserCode.findOne({ where: { userId: user?.id } });
 
+    console.log(user, code);
+    
     if (Number(code?.code) !== validationCode) return null;
 
     await Promise.all([
