@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { getVideo } from '../../api';
 import Header from '../../components/Header';
@@ -7,11 +7,11 @@ import AiContext from '../../hooks/AiContext';
 import UserInput from '../../components/UserInput';
 
 export default function Playphrase() {
-  const { notify, isLogged, style } = useContext(AiContext);
-  const [src, setSrc] = useState();
-  const [subtitle, setSubtitle] = useState();
+  const {
+    notify, isLogged, style, src, setSrc, subtitle, setSubtitle,
+  } = useContext(AiContext);
 
-  const searchVideo = async (query) => {
+  const searchVideo = useCallback(async (query) => {
     notify('Loading ...');
     try {
       const response = await getVideo(query.replace(/[^a-zA-Z0-9]/g, '').toLowerCase());
@@ -21,7 +21,7 @@ export default function Playphrase() {
     } catch (error) {
       notify('something gone wrong');
     }
-  };
+  }, [getVideo, notify, setSubtitle, setSrc, toast]);
 
   useEffect(() => {
     isLogged();

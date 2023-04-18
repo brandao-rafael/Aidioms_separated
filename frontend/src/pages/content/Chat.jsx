@@ -146,8 +146,8 @@ function Chat() {
     getSessionIdf();
 
     return () => {
-      setMessageData();
-      setHasConversation(false);
+      // setMessageData();
+      // setHasConversation(false);
       dismiss(toastId);
     };
   }, [

@@ -1,4 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, {
+  useCallback, useContext, useEffect,
+} from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import { generateImage } from '../../api';
 // import { useHistory } from 'react-router-dom';
@@ -8,23 +10,29 @@ import UserInput from '../../components/UserInput';
 
 export default function ImageGenerator() {
   const {
-    isLogged, cookies, notify, style, quantity, setQuantity,
+    isLogged,
+    cookies,
+    notify,
+    style,
+    quantity,
+    setQuantity,
+    url,
+    setUrl,
+    filter,
+    setFilter,
   } = useContext(AiContext);
-  const [url, setUrl] = useState([]);
-  // eslint-disable-next-line no-unused-vars
-  const [filter, setFilter] = useState({});
 
-  const requestImage = async (prompt) => {
+  const requestImage = useCallback(async (prompt) => {
     notify('loading...');
     try {
       const response = await generateImage(cookies.token, prompt, Number(quantity), filter);
-      setUrl(response.data?.url);
+      setUrl(response.data?.base_64);
       toast.dismiss();
     } catch (error) {
       toast.dismiss();
       notify('Something gone wrong');
     }
-  };
+  }, [setUrl, url, cookies.token, filter, quantity]);
 
   const handleChange = (e) => {
     setFilter({ ...filter, [e.target.name]: e.target.value });
