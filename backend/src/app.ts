@@ -23,7 +23,7 @@ class App {
     this.config();
     this.routes();
   }
-
+  // production
   // private config(): void {
   //   const corsOptions = {
   //     origin: "https://aidioms-production.up.railway.app",
@@ -64,7 +64,8 @@ class App {
   
     this.app.use(express.json());
   }
-
+  
+  // local testing
   // private config(): void {
   //   const corsOptions = {
   //     origin: "http://localhost:3000",
