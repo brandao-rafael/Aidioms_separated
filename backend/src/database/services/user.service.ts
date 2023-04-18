@@ -157,7 +157,6 @@ export default class UserService {
     const code = await UserCode.findOne({ where: { userId: user?.id } });
 
     console.log(user, code);
-    
     if (Number(code?.code) !== validationCode) return null;
 
     await Promise.all([
