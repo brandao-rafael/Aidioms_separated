@@ -65,7 +65,6 @@ class App {
     this.app.use(express.json());
   }
 
-
   // private config(): void {
   //   const corsOptions = {
   //     origin: "http://localhost:3000",
