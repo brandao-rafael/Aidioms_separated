@@ -47,7 +47,7 @@ class App {
   // dev testing
     private config(): void {
     const corsOptions = {
-      origin: "https://aidiomsseparated-production.up.railway.app/",
+      origin: "https://aidiomsseparated-production.up.railway.app",
       methods: 'GET,POST,DELETE,OPTIONS,PUT,PATCH',
       allowedHeaders: 'Content-Type,Authorization,X-Requested-With,x_api_key',
       credentials: true,
@@ -57,7 +57,7 @@ class App {
     this.app.use(cors(corsOptions));
   
     this.app.use((_req: Request, res: Response, next: NextFunction) => {
-      res.setHeader('Access-Control-Allow-Origin', "https://aidiomsseparated-production.up.railway.app/");
+      res.setHeader('Access-Control-Allow-Origin', "https://aidiomsseparated-production.up.railway.app");
       res.setHeader('Access-Control-Allow-Credentials', 'true');
       next();
     });
