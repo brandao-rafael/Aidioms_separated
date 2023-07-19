@@ -1,5 +1,5 @@
 import IStudent from '../interfaces/IStudents';
-import Student from '../model/students.model';
+import Student from '../database/model/students.model';
 
 export default class StudentService {
   static async create(student: IStudent): Promise<IStudent> {

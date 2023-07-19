@@ -2,10 +2,10 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import IUserRegister from '../interfaces/IUserRegister';
-import User from '../model/users.model';
+import User from '../database/model/users.model';
 import 'dotenv/config';
-import UserCode from '../model/userCode';
-import transporter from '../model/config/transporter';
+import UserCode from '../database/model/userCode';
+import transporter from '../database/model/config/transporter';
 
 const jwtConfig = {
   expiresIn: '1d',

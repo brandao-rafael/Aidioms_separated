@@ -1,7 +1,7 @@
 import { Configuration, OpenAIApi } from 'openai';
-import UserSessionId from '../model/userSessionId.model';
+import UserSessionId from '../database/model/userSessionId.model';
 import 'dotenv/config';
-import Chat from '../model/chat.model';
+import Chat from '../database/model/chat.model';
 import IHistoric from '../interfaces/chat/IHistoric';
 import axios, { AxiosRequestConfig } from 'axios';
 import FormData from 'form-data';

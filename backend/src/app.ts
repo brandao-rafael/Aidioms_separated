@@ -1,11 +1,11 @@
 import express, { Application, NextFunction, Request, Response } from 'express';
 // import cors from 'cors';
-import User from './database/routes/User.routes';
-import Class from './database/routes/Class.routes';
-import Student from './database/routes/Student.routes';
-import Chat from './database/routes/Chat.routes';
-import Image from './database/routes/Image.routes';
-import PlayPhrase from './database/routes/Playphrase.routes';
+import User from './routes/User.routes';
+import Class from './routes/Class.routes';
+import Student from './routes/Student.routes';
+import Chat from './routes/Chat.routes';
+import Image from './routes/Image.routes';
+import PlayPhrase from './routes/Playphrase.routes';
 const cors = require('cors');
 
 const userRouter = new User();
