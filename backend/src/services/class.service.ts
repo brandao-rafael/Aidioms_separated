@@ -1,5 +1,5 @@
 import IClass from '../interfaces/IClass';
-import Class from '../model/class.model';
+import Class from '../database/model/class.model';
 
 export default class ClassService {
   static async create(classData: IClass): Promise<IClass> {
