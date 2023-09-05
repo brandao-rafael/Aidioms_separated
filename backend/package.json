@@ -62,7 +62,6 @@
     "jest": "27.4.3",
     "joi": "^17.8.3",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^7.0.2",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.1",
     "openai": "^3.2.1",
