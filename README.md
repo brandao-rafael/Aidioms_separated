@@ -16,7 +16,7 @@
 - For this feature to work, the video must be pre-uploaded via the post video page.
 
 
-## Technologies
+## Technologies and Tools
 
 ### Front-end
 - React
@@ -33,6 +33,10 @@
 - Cors
 - Sequelize
 - JsonWebToken
+- MSC design pattern (Model, Service, Controller)
+- OOP (object-oriented programming)
 
 ### Database
 - MySQL
+
+

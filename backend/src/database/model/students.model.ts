@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import { Model, DataTypes, Optional } from 'sequelize';
 import db from '.';
-import IStudent from '../interfaces/IStudents';
+import IStudent from '../../interfaces/IStudents';
 import Class from './class.model';
 
 type StudentCreationAttributes = Optional<IStudent, 'id'>;
