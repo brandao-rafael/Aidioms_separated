@@ -1,9 +1,9 @@
 {
-  "name": "jet-labs",
+  "name": "teach-idiom-tech",
   "version": "1.0.0",
   "private": true,
   "engines": {
-    "node": "16"
+    "node": "18"
   },
   "dependencies": {
     "@babel/core": "^7.16.0",
@@ -11,13 +11,13 @@
     "@fortawesome/free-regular-svg-icons": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "@googlemaps/react-wrapper": "^1.1.35",
-    "@nivo/bar": "^0.80.0",
-    "@nivo/bump": "^0.80.0",
-    "@nivo/core": "^0.80.0",
-    "@nivo/radial-bar": "^0.80.0",
-    "@nivo/stream": "^0.80.0",
+    "@nivo/bar": "^0.83.0",
+    "@nivo/bump": "^0.83.0",
+    "@nivo/core": "^0.83.0",
+    "@nivo/radial-bar": "^0.83.0",
+    "@nivo/stream": "^0.83.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
-    "@svgr/webpack": "^5.5.0",
+    "@svgr/webpack": "^8.1.0",
     "axios": "^1.2.1",
     "babel-jest": "^27.4.2",
     "babel-loader": "^8.2.3",
@@ -123,7 +123,7 @@
     "@testing-library/react": "^12.1.5",
     "@testing-library/user-event": "^13.5.0",
     "clipboardy": "^2.1.0",
-    "cypress": "^10.4.0",
+    "cypress": "^13.1.0",
     "cypress-multi-reporters": "^1.6.1",
     "eslint": "^8.34.0",
     "eslint-config-airbnb": "^19.0.4",
