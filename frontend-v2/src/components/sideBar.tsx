@@ -1,22 +1,22 @@
 import Link from "next/link";
 import React from "react";
+import styles from "./styles/sideBar.module.scss";
 import MessageIcon from "remixicon-react/Message2lineIcon";
 import ImageIcon from "remixicon-react/ImageEditLineIcon";
-import VideoIcon from "remixicon-react/VideoChatLineIcon";
-
+import VideoIcon from "remixicon-react/VideoLineIcon";
 
 const SideBar: React.FC = () => {
   return (
-    <div>
-        <Link href="/chat">
-            <MessageIcon size="1em" /> Chat
-        </Link>
-        <Link href="/image">
-            <ImageIcon size="1em" /> Image
-        </Link>
-        <Link href="/video">
-            <VideoIcon size="1em" /> Video
-        </Link>
+    <div className={styles.sidebar}>
+      <Link href="/chat" className={styles.link}>
+        <MessageIcon size="1.5em" />
+      </Link>
+      <Link href="/imageGenerator" className={styles.link}>
+        <ImageIcon size="1.5em" />
+      </Link>
+      <Link href="/videoPhrase" className={styles.link}>
+        <VideoIcon size="1.5em" />
+      </Link>
     </div>
   );
 };

@@ -1,7 +1,7 @@
-import Chat from '@/pages/Chat'
+import React from "react";
 
-export default function Home() {
-  return (
-    <Chat />
-  )
+const Home: React.FC = () => {
+  return <></>;
 }
+
+export default Home;

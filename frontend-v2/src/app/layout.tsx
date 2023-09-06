@@ -1,8 +1,7 @@
+// RootLayout.tsx
 import "../styles/main.scss";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import SideBar from "../components/sideBar";
 
 export const metadata: Metadata = {
   title: "Teach Idioms",
@@ -15,8 +14,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <>
+      <div className="appContainer">
+        <SideBar />
+        <div className="contentArea">
+          {children}
+        </div>
+      </div>
+    </>
   );
 }

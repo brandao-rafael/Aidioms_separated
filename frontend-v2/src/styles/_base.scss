@@ -5,3 +5,13 @@ body {
   background-color: $primary-color;
   color: $h-text-color;
 }
+
+.appContainer {
+  display: flex;
+  min-height: 100vh;
+}
+
+.contentArea {
+  flex: 1;
+  padding: 1em;
+}
