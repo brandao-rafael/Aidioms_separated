@@ -3,8 +3,8 @@
 
 .inputContainer {
   display: flex;
-  margin-bottom: 1rem;
-  width: 90%;
+  margin: 0 0 1rem 0;
+  width: 100%;
 }
 
 .input {
@@ -20,7 +20,7 @@
   }
 }
 
-.submitButton {
+.btn {
   @include transition;
   border: none;
   border-radius: 10%;

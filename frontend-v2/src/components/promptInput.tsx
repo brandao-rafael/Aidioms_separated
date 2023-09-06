@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./styles/promptInput.module.scss";
 import SendIcon from "remixicon-react/SendPlane2LineIcon";
+import MicIcon from "remixicon-react/MicLineIcon";
 
 type PromptInputProps = {
   submitMessage: (value: string) => void;
@@ -27,13 +28,23 @@ const PromptInput: React.FC<PromptInputProps> = ({ submitMessage }) => {
       />
       <button
         type="button"
-        className={styles.submitButton}
+        className={styles.btn}
         onClick={() => {
           submitMessage(userMessage);
           setUserMessage("");
         }}
       >
         <SendIcon size='28px'/>
+      </button>
+      <button
+        type="button"
+        className={styles.btn}
+        onClick={() => {
+          submitMessage(userMessage);
+          setUserMessage("");
+        }}
+      >
+        <MicIcon size='28px'/>
       </button>
     </div>
   );
