@@ -1,0 +1,52 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.imageGeneratorContainer {
+  display: flex;
+  flex-direction: column;
+  width: 98%;
+
+}
+
+.quantityContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 1rem 0;
+  width: 100%;
+
+  // input type range
+  input {
+    @include transition(opacity, 0.3s, ease-in-out);
+    width: 100%;
+    background-color: $secondary-color;
+    height: 10px;
+    opacity: 0.7;
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  p {
+    margin: 0 0 0.5rem 0;
+  }
+}
+
+.resultImageContainer {
+  align-self: center;
+  margin: 1rem 0 0 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  img {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: $box-shadow;
+    margin: 0.5rem;
+  }
+}
