@@ -1,5 +1,6 @@
 // RootLayout.tsx
 import "../styles/main.scss";
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; 
 import type { Metadata } from "next";
 import SideBar from "../components/sideBar";
 
