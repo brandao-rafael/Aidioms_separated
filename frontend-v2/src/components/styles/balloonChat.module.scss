@@ -1,0 +1,69 @@
+@import '../../styles/variables';
+
+.balloonMessage,
+.balloonMessageLeft {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  box-shadow: $box-shadow;
+  margin: 10px;
+  max-width: 50%;
+  padding: 10px;
+  position: relative;
+}
+
+.balloonMessage {
+  align-self: flex-end;
+  align-items: end;
+  background-color: $accent-color;
+  color: $primary-color;
+
+  span {
+    color: $light-gray;
+  }
+
+  &::before {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-left: 10px solid $accent-color;
+    border-right: 10px solid transparent;
+    border-top: 10px solid $accent-color;
+    border-bottom: 10px solid transparent;
+    right: -10px;
+    top: 0;
+  }
+}
+
+.balloonMessageLeft {
+  align-self: flex-start;
+  align-items: start;
+  background-color: $primary-color;
+  color: $accent-color;
+
+  span {
+    color: $p-text-color;
+  }
+
+  &::before {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px solid $primary-color;
+    border-top: 10px solid $primary-color;
+    border-bottom: 10px solid transparent;
+    left: -10px;
+    top: 0;
+  }
+}
+
+.balloonText {
+  font-size: 15px;
+}
+
+.balloonTimestamp {
+  font-size: 10px;
+}

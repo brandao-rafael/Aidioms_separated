@@ -1,0 +1,19 @@
+@import '../../styles/variables.scss';
+
+.messagesContainer {
+    display: flex;
+    border-radius: 5px;
+    border-bottom: solid 1px $accent-color;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 70vh;
+    width: 98%;
+    margin-bottom: 10px;
+    padding: 1em;
+    overflow-y: scroll;
+    background-color: $secondary-color;
+
+    &::-webkit-scrollbar {
+        visibility: hidden;
+    }
+}

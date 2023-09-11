@@ -1,0 +1,38 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.inputContainer {
+  display: flex;
+  margin: 0 0 1rem 0;
+  width: 100%;
+}
+
+.input {
+  background-color: $secondary-color;
+  color: $h-text-color;
+  border: none;
+  border-radius: 5px;
+  border-bottom: solid 1px $accent-color;
+  font-size: 18px;
+  width: 100%;
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn {
+  @include transition;
+  border: none;
+  border-radius: 10%;
+  color: $primary-color;
+  padding: 5px;
+  margin-left: 1em;
+  background-color: $accent-color;
+  cursor: pointer;
+  &:hover {
+    @include transition;
+    border: solid 2px $accent-color;
+    background-color: $primary-color;
+    color: $accent-color;
+  }
+}
